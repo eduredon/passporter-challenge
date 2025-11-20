@@ -1,17 +1,16 @@
 import { expect } from "@jest/globals"
 import { move } from "./some_kata"
 
-describe("Some kata", () => {
-  it("should return true", () => {
-    expect(true).toBe(true)
-  })
-
+describe("Rover Mars Kata", () => {
   it("should move forward in the north direction", () => {
     const initialDirection = "N"
     const initialPosition: [number, number] = [0, 0]
 
     const newPosition = move(['f'], initialPosition, initialDirection)
-    expect(newPosition).toEqual([0, 1])
+    expect(newPosition).toEqual({
+      position: [0, 1],
+      direction: 'N'
+    })
   })
 
   it("should move backward in the north direction", () => {
@@ -19,17 +18,20 @@ describe("Some kata", () => {
     const initialPosition: [number, number] = [0, 0]
 
     const newPosition = move(['b'], initialPosition, initialDirection)
-    expect(newPosition).toEqual([0, -1])
+    expect(newPosition).toEqual({
+      position: [0, -1],
+      direction: 'N'
+    })
   })
 
-  it("should turn right in the north direction", () => {
+  it("should turn right in the east direction", () => {
     const initialDirection = "N"
     const initialPosition: [number, number] = [0, 0]
 
     const newPosition = move(['r'], initialPosition, initialDirection)
     expect(newPosition).toEqual({
-      direction: "E",
-      position: [0, 0]
+      position: [0, 0],
+      direction: 'E'
     })
   })
 })
