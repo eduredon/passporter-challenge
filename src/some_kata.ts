@@ -1,7 +1,6 @@
 export const move = (moves: string[], initialPosition: [number, number], direction: string) => {
-
-    const forward = [initialPosition[0], initialPosition[1] + 1]
-    const backward = [initialPosition[0], initialPosition[1] - 1]
+    let posX = initialPosition[0]
+    let posY = initialPosition[1]
     let currentDirection = direction
 
     const currentPosition = moves.map((move) => {
@@ -9,12 +8,19 @@ export const move = (moves: string[], initialPosition: [number, number], directi
             currentDirection = 'E'
         }
 
-        if (move === 'f') return forward
-        if (move === 'b') return backward
-    })[0] as [number, number]
+        if (move === 'f' && currentDirection === 'N') {
+            posY = posY + 1
+            return [posX, posY]
+        }
+        if (move === 'f' && currentDirection === 'E') {
+            posX = posX + 1
+            return [posX, posY]
+        }
+        if (move === 'b') return [posX, posY - 1]
+    })[moves.length - 1]
 
     return {
-        position: currentPosition || initialPosition,
+        position: currentPosition ?? initialPosition,
         direction: currentDirection
     }
 }
